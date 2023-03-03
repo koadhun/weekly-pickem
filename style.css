@@ -91,3 +91,36 @@ body {
     padding: 5px;
     width: 50px;
 }
+
+/* LOGIN.HTML STYLING */
+
+#login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    border: 1px solid #555;
+    padding-bottom: 20px;
+}
+
+#login-content label {
+    padding: 10px 0px 0px 0px;
+    font-weight: bold;
+}
+
+#login-content input {
+    width: 300px;
+    margin-top: 5px;
+}
+
+#loginBtn {
+    width: 200px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#loginBtn:hover {
+    cursor: pointer;
+}
