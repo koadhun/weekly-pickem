@@ -37,7 +37,7 @@ body {
     color: orange;
 }
 
-#main-content {
+.main-content {
     display: block;
 }
 
@@ -123,4 +123,95 @@ body {
 
 #loginBtn:hover {
     cursor: pointer;
+}
+
+
+/* FANTASY.HTML  */
+
+#fantasy-content {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#fantasy-content > h1 {
+    text-align: center;
+}
+
+#fantasy-content > a {
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+#fantasy-content > a:visited {
+    color: black;
+}
+
+.fantasy-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+    border: 1px solid #777;
+    height: 300px;
+    align-items: center;
+    text-align: center;
+}
+
+.fantasy-row > img {
+    width: 400px;
+    height: 100%;
+}
+
+.fantasy-row > h2 {
+    margin: 20px 20px 20px 20px;
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.fantasySpan {
+    font-size: 36px;
+    color: darkblue;
+}
+
+
+.hiddenJoinNow {
+    display: none;
+    width: 100%;
+}
+
+.fantasyText {
+    display: block;
+}
+
+
+.fantasy-row:hover > .fantasyText {
+    display: none;
+}
+
+.fantasy-row:hover > .hiddenJoinNow {
+    display: block;
+    color: darkblue;
+}
+
+.joinNowBtn {
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    background-color: darkblue;
+}
+
+.joinNowBtn:hover {
+    background-color: #fff;
+    color: orange;
+    border-color: orange;
+}
+
+.comingSoon {
+    text-align: center;
 }

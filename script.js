@@ -4,14 +4,14 @@ const yearSelector = document.getElementById('yearSelector')
 const seasonSelector = document.getElementById('seasonSelector')
 const selectorsDiv = document.getElementById('seasonSelect')
 
-const API_KEY = 'a4ce21f14e3c4c94a410e5c8def9b9b3'
+const API_KEY = 'af43c658afc645f29c4d40ad7cd52bd6'
 const BASE_URL = 'https://api.sportsdata.io/v3/nfl/scores/json/'
-const WEEKLY_URL = 'GameStatsByWeek/'
+const WEEKLY_URL = 'TeamGameStats/'
 
 // Full link for Weekly matches API call:
-// https://api.sportsdata.io/v3/nfl/scores/json/GameStatsByWeek/{season}/{week}?key=a4ce21f14e3c4c94a410e5c8def9b9b3
+// https://api.sportsdata.io/v3/nfl/scores/json/TeamGameStats/{season}/{week}?key=a4ce21f14e3c4c94a410e5c8def9b9b3
 // Example link for 2022 Regular season, Week 1:
-// https://api.sportsdata.io/v3/nfl/scores/json/GameStatsByWeek/2022REG/1?key=a4ce21f14e3c4c94a410e5c8def9b9b3
+// https://api.sportsdata.io/v3/nfl/scores/json/TeamGameStats/2022REG/1?key=a4ce21f14e3c4c94a410e5c8def9b9b3
 
 
 /* TODO for later: Change default week value based on dates. */
@@ -42,10 +42,12 @@ const loadData = (year, season, week) => {
     .then(response => response.json())
     .then(data => {
         console.log(data)
+        let readGameKeys = []
         for(let match of data) {
-            console.log(match.Week)
-            if(match.Week == weekSelector.value){
+            console.log(match)
+            if(match.Week == weekSelector.value && !readGameKeys.includes(match.GameKey)){
                 // ROW FOR THE MATCH
+                readGameKeys.push(match.GameKey)
                 let rowDiv = document.createElement('div')
                 rowDiv.classList.add('row')
                 
@@ -73,17 +75,17 @@ const loadData = (year, season, week) => {
                 homeTeamElements.appendChild(matchDiv) */
 
                 let homeImage = document.createElement('img')
-                homeImage.src = `/images/logo-${match.HomeTeam}.png`
+                homeImage.src = `/images/logo-${match.Team}.png`
                 homeImage.classList.add('teamLogo')
                 homeTeamElements.appendChild(homeImage)
             
                 let homeTeam = document.createElement('p')
-                homeTeam.innerText = `${match.HomeTeam}`
+                homeTeam.innerText = `${match.Team}`
                 homeTeam.classList.add('homeTeam')
                 homeTeamElements.appendChild(homeTeam)
             
                 let homeScore = document.createElement('p')
-                homeScore.innerText = `${match.HomeScore}`
+                homeScore.innerText = `${match.Score}`
                 homeScore.classList.add('homeScore')
                 homeTeamElements.appendChild(homeScore)
             
@@ -101,22 +103,22 @@ const loadData = (year, season, week) => {
                 awayTeamElements.addEventListener('click', () => {
                     awayTeamElements.style = "border: 3px solid yellow;"
                     homeTeamElements.style = "border: none;"
-                    console.log(`User predicted ${match.AwayTeam} to win`)
+                    console.log(`User predicted ${match.Opponent} to win`)
                 })
                 matchDetailsDiv.appendChild(awayTeamElements)
             
                 let awayScore = document.createElement('p')
-                awayScore.innerText = `${match.AwayScore}`
+                awayScore.innerText = `${match.OpponentScore}`
                 awayScore.classList.add('awayScore')
                 awayTeamElements.appendChild(awayScore)
             
                 let awayTeam = document.createElement('p')
-                awayTeam.innerText = `${match.AwayTeam}`
+                awayTeam.innerText = `${match.Opponent}`
                 awayTeam.classList.add('awayTeam')
                 awayTeamElements.appendChild(awayTeam)
 
                 let awayImage = document.createElement('img')
-                awayImage.src = `/images/logo-${match.AwayTeam}.png`
+                awayImage.src = `/images/logo-${match.Opponent}.png`
                 awayImage.classList.add('teamLogo')
                 awayTeamElements.appendChild(awayImage)
 
